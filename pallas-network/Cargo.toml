@@ -24,7 +24,7 @@ tokio = { version = "1", features = ["net", "io-util", "time", "sync", "macros"]
 tracing = "0.1.37"
 
 [target.'cfg(windows)'.dependencies]
-tokio-named-pipes = "0.1.0"
+tokio-named-pipes = { git = "git@github.com:falcucci/tokio-named-pipes.git", branch = "main" }
 windows-sys = "0.48.0"
 
 [dev-dependencies]
