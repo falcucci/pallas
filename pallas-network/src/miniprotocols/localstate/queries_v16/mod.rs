@@ -398,3 +398,15 @@ pub async fn get_stake_snapshots(
 
     Ok(result)
 }
+
+pub async fn debug_chain_dep_state(
+    client: &mut Client,
+    era: u16,
+) -> Result<Vec<Vec<Bytes>>, ClientError> {
+    let query = BlockQuery::DebugChainDepState;
+    let query = LedgerQuery::BlockQuery(era, query);
+    let query = Request::LedgerQuery(query);
+    let result = client.query(query).await?;
+
+    Ok(result)
+}

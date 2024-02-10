@@ -19,48 +19,53 @@ async fn do_localstate_query(client: &mut NodeClient) {
 
     client.acquire(None).await.unwrap();
 
-    let result = queries_v16::get_chain_point(client).await.unwrap();
-    info!("result: {:?}", result);
-
-    let result = queries_v16::get_system_start(client).await.unwrap();
-    info!("result: {:?}", result);
+    // let result = queries_v16::get_chain_point(client).await.unwrap();
+    // info!("result: {:?}", result);
+    //
+    // let result = queries_v16::get_system_start(client).await.unwrap();
+    // info!("result: {:?}", result);
 
     let era = queries_v16::get_current_era(client).await.unwrap();
     info!("result: {:?}", era);
 
-    let result = queries_v16::get_block_epoch_number(client, era)
-        .await
-        .unwrap();
-    info!("result: {:?}", result);
+    // let result = queries_v16::get_block_epoch_number(client, era)
+    //     .await
+    //     .unwrap();
+    // info!("result: {:?}", result);
+    //
+    // let result = queries_v16::get_stake_distribution(client, era)
+    //     .await
+    //     .unwrap();
+    // info!("result: {:?}", result);
+    //
+    // let addrx = "addr_test1vr80076l3x5uw6n94nwhgmv7ssgy6muzf47ugn6z0l92rhg2mgtu0".to_string();
+    // let addrx: Address = Address::from_bech32(&addrx).unwrap();
+    // let addrx: Addr = addrx.to_vec().into();
+    //
+    // let addry =
+    // "008c5bf0f2af6f1ef08bb3f6ec702dd16e1c514b7e1d12f7549b47db9f4d943c7af0aaec774757d4745d1a2c8dd3220e6ec2c9df23f757a2f8"
+    // .to_string();
+    // let addry: Address = Address::from_hex(&addry).unwrap();
+    // let addry: Addr = addry.to_vec().into();
+    //
+    // let addrs: Addrs = vec![addrx, addry];
+    // let result = queries_v16::get_utxo_by_address(client, era, addrs)
+    //     .await
+    //     .unwrap();
+    // info!("result: {:?}", result);
 
-    let result = queries_v16::get_stake_distribution(client, era)
-        .await
-        .unwrap();
-    info!("result: {:?}", result);
-
-    let addrx = "addr_test1vr80076l3x5uw6n94nwhgmv7ssgy6muzf47ugn6z0l92rhg2mgtu0".to_string();
-    let addrx: Address = Address::from_bech32(&addrx).unwrap();
-    let addrx: Addr = addrx.to_vec().into();
-
-    let addry =
-    "008c5bf0f2af6f1ef08bb3f6ec702dd16e1c514b7e1d12f7549b47db9f4d943c7af0aaec774757d4745d1a2c8dd3220e6ec2c9df23f757a2f8"
-    .to_string();
-    let addry: Address = Address::from_hex(&addry).unwrap();
-    let addry: Addr = addry.to_vec().into();
-
-    let addrs: Addrs = vec![addrx, addry];
-    let result = queries_v16::get_utxo_by_address(client, era, addrs)
-        .await
-        .unwrap();
-    info!("result: {:?}", result);
-
-    let result = queries_v16::get_current_pparams(client, era).await.unwrap();
-    println!("result: {:?}", result);
+    // let result = queries_v16::get_current_pparams(client, era).await.unwrap();
+    // println!("result: {:?}", result);
 
     // Stake pool ID/verification key hash (either Bech32-decoded or hex-decoded).
     // Empty Set means all pools.
-    let pools: BTreeSet<Bytes> = BTreeSet::new();
-    let result = queries_v16::get_stake_snapshots(client, era, pools)
+    // let pools: BTreeSet<Bytes> = BTreeSet::new();
+    // let result = queries_v16::get_stake_snapshots(client, era, pools)
+    //     .await
+    //     .unwrap();
+    // println!("result: {:?}", result);
+
+    let result = queries_v16::debug_chain_dep_state(client, era)
         .await
         .unwrap();
     println!("result: {:?}", result);
@@ -120,7 +125,7 @@ async fn main() {
     do_localstate_query(&mut client).await;
 
     // execute the chainsync flow from an arbitrary point in the chain
-    do_chainsync(&mut client).await;
+    // do_chainsync(&mut client).await;
 }
 
 // change the following to match the Cardano node named-pipe in your local
